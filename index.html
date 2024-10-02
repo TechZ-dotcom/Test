@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Location Grab</title>
+</head>
+<body>
+  <h1>Your Location Data</h1>
+  <p id="location">Allow location access to see your position.</p>
+
+  <script>
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        document.getElementById('location').innerHTML =
+          "Latitude: " + position.coords.latitude + "<br>" +
+          "Longitude: " + position.coords.longitude;
+      }, function(error) {
+        document.getElementById('location').innerHTML =
+          "Unable to retrieve your location. Permission denied or error occurred.";
+      });
+    } else {
+      document.getElementById('location').innerHTML = "Geolocation is not supported by your browser.";
+    }
+  </script>
+</body>
+</html>
